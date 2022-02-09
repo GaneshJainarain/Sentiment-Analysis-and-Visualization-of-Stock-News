@@ -1,1 +1,1 @@
-print(news_tables)
+compound

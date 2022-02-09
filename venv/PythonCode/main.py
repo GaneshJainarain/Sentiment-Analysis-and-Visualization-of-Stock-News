@@ -1,9 +1,16 @@
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
+import nltk
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import pandas as pd
+import ssl
+import matplotlib.pyplot as plt
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 ## Getting Finviz Article Data
 finvis_url = 'https://finviz.com/quote.ashx?t='
-tickers = ['SPY', 'AAPL', 'FB']
+tickers = ['NFLX', 'TWTR', 'AAPL']
 
 news_tables = {}
 for ticker in tickers:
@@ -15,7 +22,7 @@ for ticker in tickers:
     html = BeautifulSoup(response,features="lxml")
     news_table = html.find(id='news-table')
     news_tables[ticker] = news_table
-    break
+    
 
 ## Parsing and Manipulating Finviz Data
 # Parse data that we have gotten from Beautiful Soup
@@ -37,7 +44,28 @@ for ticker, news_table in news_tables.items():
             time = date_data[1]
 
         parsed_data.append([ticker, date, time, title])
-print(parsed_data)
+
+df = pd.DataFrame(parsed_data, columns=['ticker', 'date', 'time', 'title'])
+#print(df.head)
+
+vader = SentimentIntensityAnalyzer()
+#print(vader.polarity_scores("i think apple is a bad  company, they make awful products."))
+f = lambda title: vader.polarity_scores(title)['compound']
+df['compound'] = df['title'].apply(f)
+#print(df.head())
+
+df['date'] = pd.to_datetime(df.date).dt.date
+
+plt.figure(figsize=(10,8))
+mean_df = df.groupby(['ticker', 'date']).mean()
+mean_df = mean_df.unstack()
+mean_df = mean_df.xs('compound', axis="columns").transpose()
+mean_df.plot(kind='bar')
+plt.show()
+
+#print(mean_df)
+
+
 
 
 
