@@ -3,4 +3,4 @@
 ### We'll learn how to use the Requests module in Python, get the HTML returned in BeautifulSoup and parse the Article Data, apply Sentiment Analysis on the data with NLTK, and finally visualize the results of our data frame in Pandas with MatPlotLib.
 
 # DataFrame
-[Dataframe](READMEFiles/DataframeWithSentimentAnalysis.png)
+![Dataframe](READMEFiles/DataframeWithSentimentAnalysis.png)
