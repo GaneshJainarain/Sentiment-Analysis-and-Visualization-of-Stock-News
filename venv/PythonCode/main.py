@@ -6,6 +6,7 @@ import pandas as pd
 import ssl
 import matplotlib.pyplot as plt
 
+#handling ssl error we kept getting 
 ssl._create_default_https_context = ssl._create_unverified_context
 
 ## Getting Finviz Article Data
@@ -53,24 +54,29 @@ for ticker, news_table in news_tables.items():
 #for each row, we append the data we want
         parsed_data.append([ticker, date, time, title])
 
+#Creating our Pandas data frame and setting our columns
 df = pd.DataFrame(parsed_data, columns=['ticker', 'date', 'time', 'title'])
 #print(df.head)
 
+#Applying Sentimental Analysis
+#Goal is to apply the sentimental analysis on the news titles we are obtaining
+
 vader = SentimentIntensityAnalyzer()
-#print(vader.polarity_scores("i think apple is a bad  company, they make awful products."))
+#lamba function give me the polairty score but i dont care about all the values just the compund score
 f = lambda title: vader.polarity_scores(title)['compound']
+#Now we can apply the function on our dataframe
 df['compound'] = df['title'].apply(f)
-#print(df.head())
+print(df)
 
 df['date'] = pd.to_datetime(df.date).dt.date
-
+'''
 plt.figure(figsize=(10,8))
 mean_df = df.groupby(['ticker', 'date']).mean()
 mean_df = mean_df.unstack()
 mean_df = mean_df.xs('compound', axis="columns").transpose()
 mean_df.plot(kind='bar')
 plt.show()
-
+'''
 #print(mean_df)
 
 
