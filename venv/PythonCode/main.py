@@ -28,21 +28,29 @@ for ticker in tickers:
 # Parse data that we have gotten from Beautiful Soup
 # Then get it into an understandable format that we can extract the title, timestamp
 # so we can apply Sentimental analysis on.
+
 parsed_data = []
 
 for ticker, news_table in news_tables.items():
+#iterating over our dictionary
+#iterating over key value pairs
+
 
     for row in news_table.findAll('tr'):
-
+#for all the rows that we can find we scrape
+#anchor tag
         title = row.a.text
         date_data = row.td.text.split(' ')
 
+#either singular timestamp 04:00
+#or timestamp with data Jun-18-21 04:00
         if len(date_data) == 1:
             time = date_data[0]
         else:
             date = date_data[0]
             time = date_data[1]
 
+#for each row, we append the data we want
         parsed_data.append([ticker, date, time, title])
 
 df = pd.DataFrame(parsed_data, columns=['ticker', 'date', 'time', 'title'])
