@@ -4,3 +4,7 @@
 
 # DataFrame
 ![Dataframe](READMEFiles/DataframeWithSentimentAnalysis.png)
+
+# About Scoring
+![Scoring](READMEFiles/AboutScoring.png)
+
