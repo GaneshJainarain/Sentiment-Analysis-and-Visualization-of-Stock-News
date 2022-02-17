@@ -9,6 +9,9 @@
 ![Scoring](READMEFiles/AboutScoring.png)
 
 # Visualizing The Data
-![Scoring](READMEFiles/PlottingData.png)
+![Visual](READMEFiles/PlottingData.png)
 
+# Comparing the Data to actual stock prices
+### If we compare for example AMD's analysis to its stock price we see a relative correlation in the regards of sentimental analysis.
+![Comparing](READMEFiles/ComparingData.png)
 
