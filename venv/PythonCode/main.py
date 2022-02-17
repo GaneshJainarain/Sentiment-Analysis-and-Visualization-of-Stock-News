@@ -11,6 +11,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 ## Getting Finviz Article Data
 finvis_url = 'https://finviz.com/quote.ashx?t='
+
 tickers = ['AAPL', 'NVDA', 'SPY', 'FB', 'AMD']
 
 news_tables = {}
@@ -69,7 +70,7 @@ df['compound'] = df['title'].apply(f)
 print(df)
 
 df['date'] = pd.to_datetime(df.date).dt.date
-plt.figure(figsize=(16,14))
+plt.figure(figsize=(10,8))
 mean_df = df.groupby(['ticker', 'date']).mean()
 mean_df = mean_df.unstack()
 mean_df = mean_df.xs('compound', axis="columns").transpose()

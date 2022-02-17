@@ -8,3 +8,7 @@
 # About Scoring
 ![Scoring](READMEFiles/AboutScoring.png)
 
+# Visualizing The Data
+![Scoring](READMEFiles/PlottingData.png)
+
+
