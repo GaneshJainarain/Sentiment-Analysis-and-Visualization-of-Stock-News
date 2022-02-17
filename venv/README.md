@@ -12,6 +12,6 @@
 ![Visual](READMEFiles/PlottingData.png)
 
 # Comparing the Data to actual stock prices
-### If we compare for example AMD's analysis to its stock price we see a relative correlation in the regards of sentimental analysis.
+## If we compare for example AMD's analysis to its stock price we see a relative correlation in the regards of sentimental analysis. If we compare the dates from 02-03 on the sentimental analysis chart with the stock chart we see a positive sentiment thus correlating with the stock price. We can also observe on 02-11 AMD fell from a price of $127.17 to a low of $111.81, and if we compare that drop with the sentiment analysis on the same day we see a negative sentiment in correlation with each other. 
 ![Comparing](READMEFiles/ComparingData.png)
 
